@@ -30,18 +30,23 @@ public class MusicManager : MonoBehaviour
 
     }
 
-    void setSong(AudioClip s)
+    // v must be between 0 and 1
+    public void setVolume(float v) {
+        music.volume = v;
+    }
+
+    public void setSong(AudioClip s)
     {
         music.clip = s;
         music.Play();
     }
 
-    void pauseMusic()
+    public void pauseMusic()
     {
         music.Pause();
     }
 
-    void playMusic()
+    public void playMusic()
     {
         music.Play();
     }

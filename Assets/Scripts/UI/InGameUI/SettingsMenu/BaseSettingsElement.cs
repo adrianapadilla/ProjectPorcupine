@@ -8,6 +8,8 @@
 #endregion
 
 using System;
+using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// A base UI element.

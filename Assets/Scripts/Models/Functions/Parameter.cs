@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MoonSharp.Interpreter;
 using Newtonsoft.Json.Linq;
+using UnityEngine;
+using System.Collections;
 
 [MoonSharpUserData]
 public class Parameter
