@@ -1107,8 +1107,16 @@ public class SoundSlider : GenericSlider
         base.ApplySetting();
         if (this.parameterData.ContainsKey("SoundChannel"))
         {
+            UnityEngine.Debug.Log("Connie");
             Settings.SetSetting(option.key, sliderElement.normalizedValue);
-            WorldController.Instance.SoundController.SetVolume(this.parameterData["SoundChannel"].ToString(), sliderElement.normalizedValue);
+            UnityEngine.Debug.Log("Stephen");
+            if(GameController.Instance == null)
+            {
+                UnityEngine.Debug.Log("World Controller is NULL instance");
+                return;
+            }
+            GameController.Instance.SoundController.SetVolume(this.parameterData["SoundChannel"].ToString(), sliderElement.normalizedValue);
+            UnityEngine.Debug.Log("Joe");
         }
     }
 

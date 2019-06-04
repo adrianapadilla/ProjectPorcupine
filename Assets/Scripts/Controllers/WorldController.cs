@@ -29,7 +29,10 @@ public class WorldController : MonoBehaviour
     #region Instances
     public static WorldController Instance { get; protected set; }
 
-    public SoundController SoundController { get; private set; }
+    public SoundController SoundController
+    {
+        get { return GameController.Instance.SoundController; }
+    }
 
     public TileSpriteController TileSpriteController { get; private set; }
 
@@ -76,10 +79,13 @@ public class WorldController : MonoBehaviour
         }
     }
 
-    public void OnEnable()
+    public void Awake()
     {
+        Debug.Log("Awake");
+
         if (Instance == null || Instance == this)
         {
+            Debug.Log("Singleton");
             Instance = this;
         }
         else
@@ -114,7 +120,7 @@ public class WorldController : MonoBehaviour
             CreateEmptyWorld();
         }
 
-        SoundController = new SoundController(World);
+       GameController.Instance.SoundController.SetWorld(World);
     }
 
     public void Start()

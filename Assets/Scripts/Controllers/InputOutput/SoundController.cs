@@ -47,14 +47,8 @@ public class SoundController
     private VECTOR zero;
 
     // Use this for initialization
-    public SoundController(World world = null)
+    public SoundController()
     {
-        if (world != null)
-        {
-            world.FurnitureManager.Created += OnFurnitureCreated;
-            world.OnTileTypeChanged += OnTileTypeChanged;
-        }
-
         TimeManager.Instance.EveryFrame += Update;
         zero = GetVectorFrom(Vector3.zero);
         forward = GetVectorFrom(Vector3.forward);
@@ -76,6 +70,15 @@ public class SoundController
         SoundClip clip = AudioManager.GetAudio("Sound", "MenuClick");
 
         PlaySound(clip, "UI");
+    }
+
+    public void SetWorld(World world)
+    {
+        if (world != null)
+        {
+            world.FurnitureManager.Created += OnFurnitureCreated;
+            world.OnTileTypeChanged += OnTileTypeChanged;
+        }
     }
 
     public void OnFurnitureCreated(Furniture furniture)
@@ -127,7 +130,7 @@ public class SoundController
         {
             channelGroup = AudioManager.channelGroups["master"];
         }
-        
+
         FMOD.System soundSystem = AudioManager.SoundSystem;
         Channel channel;
         soundSystem.playSound(clip.Get(), channelGroup, true, out channel);
