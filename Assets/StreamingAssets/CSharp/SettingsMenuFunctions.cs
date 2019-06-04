@@ -4,6 +4,8 @@ using DeveloperConsole;
 using ProjectPorcupine.Localization;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// A generic toggle.
@@ -1109,6 +1111,11 @@ public class SoundSlider : GenericSlider
         {
             Settings.SetSetting(option.key, sliderElement.normalizedValue);
             WorldController.Instance.SoundController.SetVolume(this.parameterData["SoundChannel"].ToString(), sliderElement.normalizedValue);
+            //change volume of music
+//            if (this.parameterData.get("SoundChannel") == "music")
+//            {
+//                Debug.Log("Song is null");
+//            }
         }
     }
 
