@@ -4,6 +4,8 @@ using DeveloperConsole;
 using ProjectPorcupine.Localization;
 using UnityEngine.UI;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// A generic toggle.
