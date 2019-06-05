@@ -9,9 +9,9 @@ public class MusicManager : MonoBehaviour
 
     public List<AudioClip> playlist;
 
-    AudioSource music;
-
+    private AudioSource music;
     private int m_currentPlayMusicIndex = 0;
+    private bool m_currentPlayMusicState = false;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class MusicManager : MonoBehaviour
             m_currentPlayMusicIndex = defaultSong;
             music.clip = playlist[m_currentPlayMusicIndex];
             music.loop = true;
-            music.Play();
+            playMusic();
         }
     }
 
@@ -48,16 +48,18 @@ public class MusicManager : MonoBehaviour
     public void setSong(AudioClip s)
     {
         music.clip = s;
-        music.Play();
+        playMusic();
     }
 
     public void pauseMusic()
     {
+        m_currentPlayMusicState = false;
         music.Pause();
     }
 
     public void playMusic()
     {
+        m_currentPlayMusicState = true;
         music.Play();
     }
 
@@ -79,7 +81,7 @@ public class MusicManager : MonoBehaviour
 
             music.clip = playlist[m_currentPlayMusicIndex];
             music.loop = true;
-            music.Play();
+            playMusic();
         }
     }
 
@@ -93,5 +95,11 @@ public class MusicManager : MonoBehaviour
         });
 
         return songNames;
+    }
+
+    // TODO: Does any component need to know this?
+    public bool GetCurrentPlayMusicState()
+    {
+        return m_currentPlayMusicState;
     }
 }
