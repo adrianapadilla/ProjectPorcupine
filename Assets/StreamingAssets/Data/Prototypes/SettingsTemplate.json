@@ -149,6 +149,13 @@
             "DefaultValue": "true",
             "ClassName": "GenericToggle",
             "Tooltip": "locational_sound_tooltip"
+          },
+          {
+            "Name": "play_sound",
+            "Key": "sound_advanced_play",
+            "DefaultValue": "true",
+            "ClassName": "GenericToggle",
+            "Tooltip": "play_sound_tooltip"
           }
         ]
       }

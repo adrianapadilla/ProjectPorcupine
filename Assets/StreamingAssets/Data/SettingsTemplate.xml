@@ -78,6 +78,7 @@
     <OptionHeading Name="advanced">
       <Option Name="sound_device" Key="sound_advanced_device" DefaultValue="0" ClassName="SoundDeviceComboBox" Tooltip="sound_device_tooltip" />
       <Option Name="locational_sound" Key="sound_advanced_locational" DefaultValue="true" ClassName="GenericToggle" Tooltip="locational_sound_tooltip" />
+      <Option Name="play_sound" Key="sound_advanced_play" DefaultValue="true" ClassName="GenericToggle" Tooltip="play_sound_tooltip" />
     </OptionHeading>
   </Category>
   <Category Name="video">
