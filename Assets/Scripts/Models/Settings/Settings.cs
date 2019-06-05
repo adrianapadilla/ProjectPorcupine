@@ -13,6 +13,7 @@ using System.Linq;
 using MoonSharp.Interpreter;
 using Newtonsoft.Json;
 using UnityEngine;
+using System.Collections;
 
 [MoonSharpUserData]
 public static class Settings
@@ -63,6 +64,20 @@ public static class Settings
         bool new_setting = settingsDict.Remove(key) == false;
         settingsDict.Add(key, value);
         UnityDebugger.Debugger.Log("Settings", (new_setting ? "Created new setting : " : "Updated setting : ") + key + " to value of " + value);
+        //change music volume
+
+        if (key == "sound_volume_music") {
+            UnityDebugger.Debugger.Log("hello123");
+            Camera camera = Camera.main;
+            MusicManager manager = camera.GetComponent<MusicManager>();
+            float volume = float.Parse(value);
+            if (volume < 1 && volume > 0){
+                manager.setVolume(volume);
+            } else {
+                manager.setVolume(volume/100);
+            }
+            
+        }
     }
 
     public static bool GetSetting<T>(string key, out T result)

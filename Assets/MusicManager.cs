@@ -5,8 +5,13 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
 
-    public AudioClip defaultSong;
+    public int defaultSong = 0;
+
+    public List<AudioClip> playlist;
+
     AudioSource music;
+
+    private int m_currentPlayMusicIndex = 0;
 
     private void Awake()
     {
@@ -19,9 +24,13 @@ public class MusicManager : MonoBehaviour
         if (defaultSong == null) Debug.Log("Song is null");
         //we want the music to loop from the start
         music = GetComponent<AudioSource>();
-        music.clip = defaultSong;
-        music.loop = true;
-        music.Play();
+        if (defaultSong < playlist.Count)
+        {
+            m_currentPlayMusicIndex = defaultSong;
+            music.clip = playlist[m_currentPlayMusicIndex];
+            music.loop = true;
+            music.Play();
+        }
     }
 
     // Update is called once per frame
@@ -30,19 +39,59 @@ public class MusicManager : MonoBehaviour
 
     }
 
-    void setSong(AudioClip s)
+    // v must be between 0 and 1
+    public void setVolume(float v)
+    {
+        music.volume = v;
+    }
+
+    public void setSong(AudioClip s)
     {
         music.clip = s;
         music.Play();
     }
 
-    void pauseMusic()
+    public void pauseMusic()
     {
         music.Pause();
     }
 
-    void playMusic()
+    public void playMusic()
     {
         music.Play();
+    }
+
+    public int GetTotalNumberOfMusic()
+    {
+        return playlist.Count;
+    }
+
+    public int GetCurrentPlayingMusicIndex()
+    {
+        return m_currentPlayMusicIndex;
+    }
+
+    public void SetCurrentPlayingMusicIndex(int index)
+    {
+        if (index < playlist.Count)
+        {
+            m_currentPlayMusicIndex = index;
+
+            music.clip = playlist[m_currentPlayMusicIndex];
+            music.loop = true;
+            music.Play();
+        }
+    }
+
+    public List<string> GetPlayList()
+    {
+        List<string> songNames = new List<string>();
+
+        playlist.ForEach((clip) =>
+        {
+            songNames.Add(clip.name);
+        });
+
+        return songNames;
     }
 }

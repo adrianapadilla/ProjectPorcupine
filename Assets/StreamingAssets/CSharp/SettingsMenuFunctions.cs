@@ -1111,11 +1111,6 @@ public class SoundSlider : GenericSlider
         {
             Settings.SetSetting(option.key, sliderElement.normalizedValue);
             WorldController.Instance.SoundController.SetVolume(this.parameterData["SoundChannel"].ToString(), sliderElement.normalizedValue);
-            //change volume of music
-//            if (this.parameterData.get("SoundChannel") == "music")
-//            {
-//                Debug.Log("Song is null");
-//            }
         }
     }
 
