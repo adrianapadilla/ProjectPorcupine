@@ -204,6 +204,20 @@ public static partial class SettingsKeyHolder
             Settings.SetSetting("sound_advanced_locational", value);
         }
     }
+
+    public static bool PlaySound
+    {
+        get
+        {
+            bool temp;
+            return Settings.GetSetting("sound_advanced_play", out temp) ? temp : true;
+        }
+
+        set
+        {
+            Settings.SetSetting("sound_advanced_play", value);
+        }
+    }
 }
 
 // Video

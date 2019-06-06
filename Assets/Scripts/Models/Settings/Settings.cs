@@ -78,6 +78,20 @@ public static class Settings
             }
             
         }
+
+        if (key == "sound_advanced_play")
+        {
+            Camera camera = Camera.main;
+            MusicManager manager = camera.GetComponent<MusicManager>();
+            if (value == "True")  // GenericToggle
+            {
+                manager.playMusic();
+            }
+            else
+            {
+                manager.pauseMusic();
+            }
+        }
     }
 
     public static bool GetSetting<T>(string key, out T result)
