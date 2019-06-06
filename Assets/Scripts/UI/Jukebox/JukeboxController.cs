@@ -8,6 +8,8 @@ public class JukeboxController : MonoBehaviour
     [SerializeField] private MusicManager m_musicManager;
 
     [SerializeField] private Dropdown m_musicDropDown;
+    [SerializeField] private Button playSongBtn;
+    [SerializeField] private Button pauseSongBtn;
     [SerializeField] private Button prevSongBtn;
     [SerializeField] private Button nextSongBtn;
 
@@ -18,6 +20,8 @@ public class JukeboxController : MonoBehaviour
 
         m_musicDropDown.value = m_musicManager.GetCurrentPlayingMusicIndex();
         m_musicDropDown.onValueChanged.AddListener(OnUserSelectSong);
+        playSongBtn.onClick.AddListener(OnUserClickPlaySong);
+        pauseSongBtn.onClick.AddListener(OnUserClickPauseSong);
         prevSongBtn.onClick.AddListener(OnUserClickPrevSong);
         nextSongBtn.onClick.AddListener(OnUserClickNextSong);
     }
@@ -25,6 +29,8 @@ public class JukeboxController : MonoBehaviour
     void OnDestroy()
     {
         m_musicDropDown.onValueChanged.RemoveListener(OnUserSelectSong);
+        playSongBtn.onClick.RemoveListener(OnUserClickPlaySong);
+        pauseSongBtn.onClick.RemoveListener(OnUserClickPauseSong);
         prevSongBtn.onClick.RemoveListener(OnUserClickPrevSong);
         nextSongBtn.onClick.RemoveListener(OnUserClickNextSong);
     }
@@ -48,6 +54,16 @@ public class JukeboxController : MonoBehaviour
     private void OnUserSelectSong(int value)
     {
         m_musicManager.SetCurrentPlayingMusicIndex(value);
+    }
+
+    private void OnUserClickPlaySong()
+    {
+        m_musicManager.playMusic();
+    }
+
+    private void OnUserClickPauseSong()
+    {
+        m_musicManager.pauseMusic();
     }
 
     private void OnUserClickNextSong()
